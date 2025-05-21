@@ -9,15 +9,15 @@ import mlflow
 import numpy as np
 import pandas as pd
 # +
-from azureml.core import Workspace
-# from mlflow.tracking import MlflowClient
+from mlflow.tracking import MlflowClient
+#from azureml.core import Workspace
 from pytimedinput import timedInput
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from ..utils import data_processing as dp
+from ..utils import data_processing as dp, feature_mapping
 from ..utils import select_features as feat_sel
 from ..utils import feature_mapping as feat_map
 from ..utils import training_evaluation as tr
@@ -25,8 +25,8 @@ from ..utils import model_wrapper as mw
 from ..utils.config_reader import read_config
 
 # Set the tracking URI to your AzureML workspace
-ws = Workspace.from_config()
-mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
+#ws = Workspace.from_config()
+#mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
 
 
 # -
