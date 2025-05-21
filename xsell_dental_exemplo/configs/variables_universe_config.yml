@@ -1,0 +1,18 @@
+columns_to_drop:
+    - None
+
+var_car:
+    - 'all'
+    
+var_par_sd:
+    - None
+
+var_par_sd_menos12:
+    - None
+
+var_rar_sd:
+    - None
+    
+var_geo_ds:
+    - None
+   

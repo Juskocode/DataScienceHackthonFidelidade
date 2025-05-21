@@ -1,0 +1,13 @@
+# Name of the new input dataset with the file extension(txt, csv,..), no path needed.
+new_file: ""
+
+# Indicate the column that uniquely identifies each record
+id_column: "ID_CLIENTE_ANON"
+
+historical_file: ""
+
+# Optional arguments, if you want to use the default values please delete or comment the arguments
+
+target_var_name:    
+
+universe_months: 

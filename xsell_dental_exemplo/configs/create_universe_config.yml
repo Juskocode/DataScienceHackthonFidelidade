@@ -1,0 +1,46 @@
+# Every new parameter added here should also be added in the utils/config_reader.py file
+# in the class CreateUniverseConfig
+
+# Lob do modelo
+lob: "SD"
+
+# 
+client_type: "INDIVIDUAL"
+
+# First month of phurshase (XSell model) / upsell (UpSell model) / churn (Churn model)
+# format YYYYMM
+start_month: 202203 #202211
+
+# Last month of phurshase (XSell model) / upsell (UpSell model) / churn (Churn model)
+# format YYYYMM
+end_month: 202308 #202212 #202401
+
+# "y" if do you want to exclude General Target 1 Universe from Target 0 Universe (y/n)
+target1_universe: "n"
+
+id_column: "ID_CLIENTE_ANON"
+
+# 
+car_filters: 
+    - "QTD_IDADE >= 18"
+    - "QTD_IDADE <= 80"
+
+#
+IND_PSIN_PCOL_ENI:
+    - 'Pessoa Singular'
+    - 'ENI'
+
+#    
+par_filters:
+    - "TX_SINISTRALIDADE_TRIENIO <= 70"
+    - "COD_PRODUTO_CATALOG == 'INDIVIDUAL'"
+
+# 
+list_of_products: 
+    - ""
+
+    
+#grounds_for_cancellation:
+
+   
+ 

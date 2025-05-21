@@ -1,0 +1,14 @@
+mes_scores: 202312 #format YYYYMM
+id_column: ""
+version : "v00.0" #alterar consoante a versão do projeto (formato v00.0)
+MODEL_TYPE : "XSELL" #alterar consoante o tipo de projeto
+MODEL_LOB : "SAVINGS" #alterar consoante a lob do projeto
+
+REVIEW_PERIODICITY : "Semestral" #neste caso porque queremos apenas 6 meses. Mudar se considerarmos 1 ano inteiro ("Anual")
+
+THRESHOLD_GREEN_6m : 1.5 #threshold para leads verdes - 6 meses
+THRESHOLD_YELLOW_6m : 1 #threshold para leads amarelas - 6 meses
+THRESHOLD_GREEN_12m : 2 #threshold para leads verdes - 12 meses
+THRESHOLD_YELLOW_12m : 1 #threshold para leads amarelas - 12 meses
+PERCENTIL_YELLOW : 25 #percentile até onde pode ser leads verdes
+PERCENTIL_RED : 35 #percentile até onde pode ser leads amarelas

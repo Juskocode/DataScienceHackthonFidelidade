@@ -1,0 +1,9 @@
+# Indicate the version of the model to make predictions, it should be in the format v00.0
+version: "v00.6"
+
+# Indicate the column that uniquely identifies each record
+id_column: "ID_CLIENTE_ANON"
+
+## Optional arguments
+# Name of the test/backtest dataset with the file extension(txt, csv,..), no path needed in case of the test file.
+input_file: ""

@@ -1,0 +1,19 @@
+# Indicate the version of the model to be run, it should be in the format v00.0
+# The integer number is for a different universe, 
+# the decimal number is fora any different test we made within the same main version
+version: "v00.6"
+
+# Indicate the column that uniquely identifies each record
+id_column: "ID_CLIENTE_ANON"
+
+## Optional arguments
+# Name of the input dataset with the file extension(txt, csv,..), no path needed.
+input_file: "data_collection_202203_202308.csv"
+
+# Select the number of last months to use for test (if integer)
+# Select the percentage of data to use for test (if decimal)
+test_size: 0.2
+
+# List of features to delete from the dataset
+columns_to_drop:
+

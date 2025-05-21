@@ -1,0 +1,5 @@
+#Indicate the version of the model to make predictions, it should be in the format v00.0
+version: "v00.6"
+
+# Id of the run that we want to register (optional)
+run_id: 
