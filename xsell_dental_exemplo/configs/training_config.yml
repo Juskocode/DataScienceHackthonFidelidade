@@ -3,8 +3,8 @@
 # retrain (run a new version with new sample and compare with the model old version)
 train_type: "retrain"
 
-version: "v01.1"
-old_version: "v01.0"
+version: "v01.2"
+old_version: "v01.1"
 
 # Indicate the column that uniquely identifies each record
 id_column: "ID_CLIENTE_ANON"
@@ -13,8 +13,8 @@ months:
   - 10
   - 8
 column_aggregation:
-   - true
-#  - false
+#   - true
+  - false
 flag_creation:
 #   - true
   - false
@@ -22,9 +22,9 @@ binning:
 #   - true
   - false
 outlier_cleaning:
-   - true
-#  - false
-standard_scaler: true
+#   - true
+  - false
+standard_scaler: false
 overwrite_saved_features: false
 #calibrated classifier. If set to False, the process will take significantly longer to find the hyperparameters.
 calibrated_classifier: false
@@ -43,14 +43,8 @@ algorithms:
 #    - MLPClassifier
 hyperparameters:
   RandomForestClassifier:
-    n_estimators:
-        - 40
-        - 80
-        - 160
-        - 320
     max_features: 
         - "sqrt"
-        - "log2"
     class_weight:
         - None
         - "balanced"
@@ -62,7 +56,6 @@ hyperparameters:
         - 20
         - 25
         - 40
-        - 42
         
   LogisticRegression:
     solver:

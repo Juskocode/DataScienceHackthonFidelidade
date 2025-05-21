@@ -1,6 +1,6 @@
 mes_scores: 202312 #format YYYYMM
 id_column: ""
-version : "v01.1" #alterar consoante a versão do projeto (formato v00.0)
+version : "v01.2" #alterar consoante a versão do projeto (formato v00.0)
 MODEL_TYPE : "XSELL" #alterar consoante o tipo de projeto
 MODEL_LOB : "SAVINGS" #alterar consoante a lob do projeto
 

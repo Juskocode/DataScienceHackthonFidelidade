@@ -3,7 +3,7 @@ from pathlib import Path
 
 import mlflow
 import pandas as pd
-from azureml.core import Workspace
+#from azureml.core import Workspace
 # from mlflow.tracking import MlflowClient
 from sklearn.metrics import roc_auc_score
 
@@ -12,8 +12,8 @@ from ..utils.training_evaluation import (decile_report, percentile_report,
                                          save_metrics)
 
 # Set the tracking URI to your AzureML workspace
-ws = Workspace.from_config()
-mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
+#ws = Workspace.from_config()
+#mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
 
 if __name__ == "__main__":
 
