@@ -1,5 +1,5 @@
 # Indicate the version of the model to make predictions, it should be in the format v00.0
-version: "v00.6"
+version: "v01.1"
 
 # Indicate the column that uniquely identifies each record
 id_column: "ID_CLIENTE_ANON"
