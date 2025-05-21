@@ -17,6 +17,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.base import BaseEstimator, TransformerMixin
 
 from ..utils import universe_creation as uc
 from ..utils.config_reader import read_config
@@ -89,7 +90,7 @@ if __name__ == "__main__":
     #labels = pd.concat([car_labels,par_sd_labels,rar_sd_labels],axis=0)
     #labels = labels[~labels.index.duplicated(keep='first')]
 
-    dental_labels = pd.read_excel(LABEL_PATH / 'Variáveis BIC_PRINCIPAL.xlsx', index_col='Name')
+    dental_labels = pd.read_excel(LABEL_PATH / 'VariaveisBIC_PRINCIPAL.xlsx', index_col='Name')
     dental_labels['Source'] = 'DENTAL'
 
     labels = pd.concat([dental_labels], axis=0)
@@ -296,6 +297,65 @@ if __name__ == "__main__":
         ),
         ('target_encoder', dp.TargetManualEncoder(AUX_REPORT_PATH, version)),
     ])
+    logging.info("Fitting and saving feature aggregation processor...\n")
+    feature_aggregator = ComprehensiveFeatureTransformer(
+        target_column='TARGET',
+        min_correlation=0.02,
+        coherence_threshold=0.3
+    )
+
+    logging.info("Fitting feature aggregator...\n")
+    X_train = feature_aggregator.fit_transform(X_train, y_train)
+
+    if hasattr(feature_aggregator, "feature_mapping"):
+        feature_mapping[version].update(feature_aggregator.feature_mapping)
+
+    logging.info("Saving feature aggregator...\n")
+    dump(
+        feature_aggregator,
+        open(MODEL_PATH / "preprocess" / f"feature_aggregator_{version.replace('.', '-')}.pkl", "wb"),
+    )
+
+    # Categorical features processing
+    logging.info("Fitting and saving categorical feature processor...\n")
+    cat_processor = CategoricalFeatureTransformer(
+        target_column='TARGET',
+        ordinal_columns=ordinal_cols,
+        ordinal_mappings=ordinal_categories,
+        high_cardinality_threshold=0.1
+    )
+
+    logging.info("Fitting categorical processor...\n")
+    X_train = cat_processor.fit_transform(X_train, y_train)
+
+    if hasattr(cat_processor, "feature_mapping"):
+        feature_mapping[version].update(cat_processor.feature_mapping)
+
+    logging.info("Saving categorical processor...\n")
+    dump(
+        cat_processor,
+        open(MODEL_PATH / "preprocess" / f"cat_processor_{version.replace('.', '-')}.pkl", "wb"),
+    )
+
+    # Imputation and scaling
+    logging.info("Fitting and saving imputation and scaling processor...\n")
+    impute_scale_processor = ImputationAndScalingTransformer(
+        numerical_imputation_strategy='median',
+        high_missing_threshold=0.3,
+        scaling_method=None  # Set to 'standardization' or 'minmax' if scaling is needed
+    )
+
+    logging.info("Fitting imputation and scaling processor...\n")
+    X_train = impute_scale_processor.fit_transform(X_train)
+
+    if hasattr(impute_scale_processor, "feature_mapping"):
+        feature_mapping[version].update(impute_scale_processor.feature_mapping)
+
+    logging.info("Saving imputation and scaling processor...\n")
+    dump(
+        impute_scale_processor,
+        open(MODEL_PATH / "preprocess" / f"impute_scale_processor_{version.replace('.', '-')}.pkl", "wb"),
+    )
 
     logging.info("Fitting third processor...\n")
     X_train = processor3.fit_transform(X_train, y_train)
