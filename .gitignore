@@ -152,4 +152,3 @@ dmypy.json
 cython_debug/
 
 # Ignore jupyter notebooks
-*.ipynb
